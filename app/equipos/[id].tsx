@@ -1,41 +1,35 @@
 import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
-import { getEquipoById } from "../../data/equipos";
 
-export default function DetalleEquipoScreen() {
+const equipos = [
+  { id: "eq-1", nombre: "Equipo 1", descripcion: "Bomba de la sala de máquinas." },
+  { id: "eq-2", nombre: "Equipo 2", descripcion: "Compresor del taller." },
+  { id: "eq-3", nombre: "Equipo 3", descripcion: "Tablero eléctrico norte." },
+];
+
+export default function DetalleEquipo() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const equipo = getEquipoById(id);
+  const equipo = equipos.find((item) => item.id === id);
 
   if (!equipo) {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Equipo no encontrado</Text>
-        <Text style={styles.value}>No hay un equipo con el id {id}.</Text>
+        <Text style={styles.titulo}>Equipo no encontrado</Text>
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.id}>{equipo.id}</Text>
-      <Text style={styles.title}>{equipo.nombre}</Text>
-
-      <Text style={styles.label}>Ubicación</Text>
-      <Text style={styles.value}>{equipo.ubicacion}</Text>
-
-      <Text style={styles.label}>Estado</Text>
-      <Text style={styles.value}>{equipo.estado}</Text>
-
-      <Text style={styles.label}>Descripción</Text>
-      <Text style={styles.value}>{equipo.descripcion}</Text>
+      <Text style={styles.titulo}>Equipo seleccionado: {id}</Text>
+      <Text style={styles.texto}>{equipo.nombre}</Text>
+      <Text style={styles.texto}>{equipo.descripcion}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 24, backgroundColor: "#FFFFFF" },
-  id: { color: "#1877B9", fontWeight: "800", fontSize: 16 },
-  title: { color: "#102A43", fontSize: 28, fontWeight: "700", marginTop: 6, marginBottom: 12 },
-  label: { color: "#52606D", fontSize: 14, fontWeight: "700", marginTop: 16 },
-  value: { color: "#102A43", fontSize: 17, marginTop: 4, lineHeight: 24 },
+  container: { flex: 1, padding: 24, backgroundColor: "#fff" },
+  titulo: { fontSize: 22, fontWeight: "bold", marginBottom: 12 },
+  texto: { fontSize: 16, marginBottom: 8 },
 });

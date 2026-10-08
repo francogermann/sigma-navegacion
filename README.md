@@ -1,38 +1,25 @@
-# SIGMA — Navegación con Expo Router
+# SIGMA
 
-Aplicación de práctica para Desarrollo de Dispositivos Móviles. SIGMA (Sistema Inteligente de Gestión de Mantenimiento) muestra cómo navegar entre pantallas con Expo Router.
+App de práctica de Desarrollo de Dispositivos Móviles. Usa Expo Router para navegar entre las pantallas de SIGMA.
 
-## Qué hace
+## Pantallas
 
-La pantalla de inicio tiene un menú con tres opciones. Cada botón es un `Link` de Expo Router:
-
-- **Equipos** abre el listado. Cada equipo navega a una ruta dinámica `equipos/[id]`.
-- **Tareas** abre las órdenes de trabajo pendientes.
-- **Nueva tarea** abre el formulario para registrar una orden.
-
-Al tocar un equipo, Expo Router abre `app/equipos/[id].tsx` y la pantalla lee el `id` con `useLocalSearchParams`.
+- `app/index.tsx`: inicio, con un Link a Equipos, Tareas y Nueva tarea.
+- `app/equipos.tsx`: listado. Al tocar un equipo se usa `router.push` hacia el detalle.
+- `app/equipos/[id].tsx`: detalle. Lee el id de la ruta con `useLocalSearchParams`.
+- `app/tareas.tsx`: tareas pendientes.
+- `app/nueva-tarea.tsx`: pantalla para una tarea nueva.
+- `app/_layout.tsx`: el Stack, con el título de cada pantalla.
 
 ## Cómo ejecutarlo
-
-Necesitás Node.js LTS.
 
 ```bash
 npm install
 npx expo start
 ```
 
-Después podés abrir el proyecto en Expo Go (escaneando el QR), en un emulador, o en el navegador con `w`.
-
-## Rutas
-
-| Archivo | Ruta | Pantalla |
-| --- | --- | --- |
-| `app/index.tsx` | `/` | Inicio |
-| `app/equipos.tsx` | `/equipos` | Listado de equipos |
-| `app/equipos/[id].tsx` | `/equipos/EQ-01` | Detalle del equipo |
-| `app/tareas.tsx` | `/tareas` | Tareas |
-| `app/nueva-tarea.tsx` | `/nueva-tarea` | Nueva tarea |
+Después se puede abrir en Expo Go o en el navegador.
 
 ## Capturas
 
-Las capturas de la navegación están en la carpeta `capturas/`.
+Están en la carpeta `capturas/`.
